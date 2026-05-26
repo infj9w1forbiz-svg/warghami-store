@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوتيك الورغمي | WARGHAMI BOUTIQUE</title>
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased bg-gray-50" style="font-family: 'Noto Kufi Arabic', sans-serif;">
+
+    <div class="bg-black text-white text-center py-2 text-xs animate-pulse">
+        ✨ تشكيلات حصرية فاخرة من بوتيك الورغمي - متوفر شحن فوري 🚀 ✨
+    </div>
+
+    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
+            <a href="/" class="text-xl font-black tracking-widest text-black">WARGHAMI</a>
+            
+            <div class="flex gap-4 text-xs font-bold text-gray-500 overflow-x-auto">
+                <a href="/?cat=all" class="hover:text-black">الكل</a>
+                <a href="/?cat=moroccan" class="hover:text-black">قفاطين مغربية</a>
+                <a href="/?cat=modern" class="hover:text-black">عصرية</a>
+                <a href="/?cat=eid" class="hover:text-black">العيد</a>
+            </div>
+
+            <div class="flex gap-3 text-gray-600">
+                <button class="hover:text-black relative">
+                    <i class="fas fa-shopping-bag text-lg"></i>
+                    <span class="absolute -top-1 -right-1 bg-black text-white w-4 h-4 rounded-full flex items-center justify-center font-bold" style="font-size: 10px;">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <% items.forEach(function(item) { %>
+            <div class="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                
+                <div class="h-64 bg-gray-100 relative">
+                    <% if (item.image_url) { %>
+                        <img src="<%= item.image_url %>" class="w-full h-full object-cover">
+                    <% } else { %>
+                        <div class="w-full h-full flex items-center justify-center text-gray-300 flex-col">
+                            <i class="fas fa-signature text-3xl mb-1"></i>
+                            <p class="text-xs tracking-widest">WARGHAMI</p>
+                        </div>
+                    <% } %>
+                    
+                    <% if (item.quantity === 0) { %>
+                        <span class="absolute top-3 right-3 bg-black text-white text-xs px-2 py-1 font-bold rounded">نفذت</span>
+                    <% } %>
+                </div>
+
+                <div class="p-4">
+                    <span class="text-xs text-gray-400"><%= item.category %></span>
+                    <h3 class="font-bold text-sm text-black truncate mt-1"><%= item.name %></h3>
+                    <p class="text-xs text-gray-400 mt-1"><%= item.size %> | <%= item.color %></p>
+                    
+                    <div class="mt-4 flex justify-between items-center">
+                        <div>
+                            <span class="font-black text-lg"><%= item.sale_price %> <span class="text-xs font-normal text-gray-500">د.ل</span></span>
+                            <% if (item.old_price && item.old_price > item.sale_price) { %>
+                                <span class="text-xs text-gray-300 line-through mr-1"><%= item.old_price %></span>
+                            <% } %>
+                        </div>
+                        
+                        <% if (item.quantity > 0) { %>
+                            <button class="bg-black text-white px-4 py-2 text-xs rounded-lg font-bold hover:bg-gray-800 transition-colors">
+                                + سلة
+                            </button>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+
+        </div>
+    </div>
+
+</body>
+</html>
